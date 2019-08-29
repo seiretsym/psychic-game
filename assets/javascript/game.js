@@ -75,7 +75,6 @@ function notUsed(key) {
     }
     else {
         usedChar.push(key);
-        console.log(usedChar);
         return true;
     }
 }
@@ -98,7 +97,6 @@ function cmpKey(key) {
 /// on key press events
 document.onkeyup = function(event) {
     var key = event.key.toLowerCase();
-    console.log(cpuLetter);
     if (cmpKey(key)) {
         guess(key);
     }
