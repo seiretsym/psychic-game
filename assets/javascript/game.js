@@ -18,7 +18,7 @@ var cpuLetter = randChar(alpha);
 
 // add point to win and reset game
 function win() {
-
+    
 }
 
 // add point to lose and reset game
