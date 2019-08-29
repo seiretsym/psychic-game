@@ -18,12 +18,14 @@ var cpuLetter = randChar(alpha);
 
 // add point to win and reset game
 function win() {
-    
+    textWins.textContent = parseInt(textWins.textContent) + 1;
+    reGame();
 }
 
 // add point to lose and reset game
 function lose() {
-
+    textLosses.textContent = parseInt(textLosses.textContent) + 1;
+    reGame();
 }
 
 // select a random letter
@@ -34,7 +36,10 @@ function randChar(array) {
 
 // restart game 
 function reGame() {
-
+    usedChar = [];
+    textGuessed.textContent = "";
+    cpuLetter = randChar(alpha);
+    textGuesses.textContent = 10;
 }
 
 // guess
@@ -49,6 +54,9 @@ function guess(key) {
         else {
             textGuesses.textContent = parseInt(textGuesses.textContent) - 1;
             usedLetter(key);
+            if (parseInt(textGuesses.textContent) == 0) {
+                lose();
+            }
         }
     }
 }
@@ -75,9 +83,6 @@ function notUsed(key) {
 // add a letter to the used letters list
 function usedLetter(key) {
     textGuessed.textContent = textGuessed.textContent + key + ", ";
-    if (parseInt(textGuessed.textContent) === 0) {
-        lose();
-    }
 }
 
 // check if key is valid
