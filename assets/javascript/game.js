@@ -7,8 +7,9 @@ var textWins = document.getElementById("wins"),
     textGuesses = document.getElementById("guesses"),
     textGuessed = document.getElementById("guessed");
 
-// alphabet array
+// arrays
 var alpha = ["abcdefghijklmnopqrstuvwxyz"];
+var usedChar = [];
 
 // cpu variables
 var cpuLetter = randChar(alpha);
@@ -49,13 +50,34 @@ function guess(key) {
             textGuesses.textContent = parseInt(textGuesses.textContent) - 1;
             usedLetter(key);
         }
+    }
+}
 
+// check if letter has been used
+function notUsed(key) {
+    var boolKey = false;
+    for (var k = 0; k < usedChar.length; k++) {
+        if (key === usedChar[k]) {
+            boolKey = true;
+        }
+    }
+
+    if (boolKey) {
+        return false;
+    }
+    else {
+        usedChar.push(key);
+        console.log(usedChar);
+        return true;
     }
 }
 
 // add a letter to the used letters list
 function usedLetter(key) {
     textGuessed.textContent = textGuessed.textContent + key + ", ";
+    if (parseInt(textGuessed.textContent) === 0) {
+        lose();
+    }
 }
 
 // check if key is valid
